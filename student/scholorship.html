@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .header {
+            background-color: #34495e;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .category {
+            margin-bottom: 20px;
+        }
+
+        .category label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+            color: #2c3e50;
+        }
+
+        .category select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+        }
+
+        .scholarship-list {
+            margin-top: 20px;
+        }
+
+        .scholarship-item {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .scholarship-item h3 {
+            margin-top: 0;
+            color: #2980b9;
+        }
+
+        .scholarship-item p {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .apply-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #27ae60;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .apply-button:hover {
+            background-color: #2ecc71;
+        }
+
+        .apply-button:disabled {
+            background-color: #7f8c8d;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Scholarship Details Portal</h1>
+    </div>
+
+    <div class="container">
+        <div class="category">
+            <label for="scholarshipType">Select Scholarship Type:</label>
+            <select id="scholarshipType">
+                <option value="" disabled selected>Select type</option>
+                <option value="government">Government</option>
+                <option value="private">Private</option>
+            </select>
+        </div>
+
+        <div class="category">
+            <label for="stream">Select Stream:</label>
+            <select id="stream" disabled>
+                <option value="" disabled selected>Select stream</option>
+                <option value="science">Science</option>
+                <option value="commerce">Commerce</option>
+                <option value="arts">Arts</option>
+            </select>
+        </div>
+
+        <div id="scholarshipList" class="scholarship-list"></div>
+    </div>
+
+    <script>
+        const scholarships = {
+            government: {
+                science: [
+                    {
+                        name: 'National Science Scholarship',
+                        eligibility: 'Class 11 and 12 Science students',
+                        benefits: 'Up to 50000/- per year',
+                        deadline: '15th September 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'State Science Merit Scholarship',
+                        eligibility: 'Top 10% students in Science stream',
+                        benefits: 'Full tuition fee waiver',
+                        deadline: '30th October 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'XYZ Government Science Scholarship',
+                        eligibility: 'Science students with 85% or above',
+                        benefits: 'Up to 40000/- per year',
+                        deadline: '1st December 2024',
+                        applyLink: '#'
+                    }
+                    // Add more scholarships here
+                ],
+                commerce: [
+                    {
+                        name: 'Commerce Excellence Scholarship',
+                        eligibility: 'Class 11 and 12 Commerce students',
+                        benefits: '30000/- per year',
+                        deadline: '10th September 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'State Commerce Scholarship',
+                        eligibility: 'Top 5% students in Commerce stream',
+                        benefits: 'Half tuition fee waiver',
+                        deadline: '20th October 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'XYZ Government Commerce Scholarship',
+                        eligibility: 'Commerce students with 90% or above',
+                        benefits: 'Up to 35000/- per year',
+                        deadline: '25th November 2024',
+                        applyLink: '#'
+                    }
+                    // Add more scholarships here
+                ],
+                arts: [
+                    {
+                        name: 'Arts Merit Scholarship',
+                        eligibility: 'Class 11 and 12 Arts students',
+                        benefits: '20000/- per year',
+                        deadline: '5th September 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'State Arts Scholarship',
+                        eligibility: 'Top 10% students in Arts stream',
+                        benefits: 'Partial tuition fee waiver',
+                        deadline: '25th October 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'XYZ Government Arts Scholarship',
+                        eligibility: 'Arts students with 80% or above',
+                        benefits: 'Up to 35000/- per year',
+                        deadline: '1st December 2024',
+                        applyLink: '#'
+                    }
+                    // Add more scholarships here
+                ]
+            },
+            private: {
+                science: [
+                    {
+                        name: 'TechCorp Science Scholarship',
+                        eligibility: 'Class 11 and 12 Science students with 80% or above',
+                        benefits: 'Up to 6000/- per year',
+                        deadline: '20th September 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'Future Scientists Program',
+                        eligibility: 'Science students with innovative projects',
+                        benefits: 'Full scholarship including stipend',
+                        deadline: '1st November 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'ABC Private Science Scholarship',
+                        eligibility: 'Science students with 85% or above',
+                        benefits: '25000/- per year',
+                        deadline: '15th December 2024',
+                        applyLink: '#'
+                    }
+                    // Add more scholarships here
+                ],
+                commerce: [
+                    {
+                        name: 'Business Leaders Scholarship',
+                        eligibility: 'Class 11 and 12 Commerce students with 75% or above',
+                        benefits: '40000/- per year',
+                        deadline: '15th September 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'Commerce Innovators Scholarship',
+                        eligibility: 'Students with top scores in Commerce stream',
+                        benefits: 'Up to 50000/- per year',
+                        deadline: '30th November 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'ABC Private Commerce Scholarship',
+                        eligibility: 'Commerce students with 80% or above',
+                        benefits: '45000/- per year',
+                        deadline: '10th December 2024',
+                        applyLink: '#'
+                    }
+                    // Add more scholarships here
+                ],
+                arts: [
+                    {
+                        name: 'Creative Minds Scholarship',
+                        eligibility: 'Class 11 and 12 Arts students with exceptional talent',
+                        benefits: 'Up to 35000/- per year',
+                        deadline: '10th October 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'Arts and Culture Scholarship',
+                        eligibility: 'Top 10% students in Arts stream',
+                        benefits: 'Partial tuition fee waiver',
+                        deadline: '1st December 2024',
+                        applyLink: '#'
+                    },
+                    {
+                        name: 'ABC Private Arts Scholarship',
+                        eligibility: 'Arts students with 75% or above',
+                        benefits: '30000/- per year',
+                        deadline: '20th December 2024',
+                        applyLink: '#'
+                    }
+                    // Add more scholarships here
+                ]
+            }
+        };
+
+        document.getElementById('scholarshipType').addEventListener('change', function () {
+            const selectedType = this.value;
+            document.getElementById('stream').disabled = false;
+            document.getElementById('scholarshipList').innerHTML = ''; // Reset scholarship list
+        });
+
+        document.getElementById('stream').addEventListener('change', function () {
+            const selectedStream = this.value;
+            const selectedType = document.getElementById('scholarshipType').value;
+            displayScholarships(selectedType, selectedStream);
+        });
+
+        function displayScholarships(type, stream) {
+            const list = document.getElementById('scholarshipList');
+            list.innerHTML = '';
+
+            scholarships[type][stream].forEach(scholarship => {
+                const item = document.createElement('div');
+                item.classList.add('scholarship-item');
+                item.innerHTML = `
+                    <h3>${scholarship.name}</h3>
+                    <p><strong>Eligibility:</strong> ${scholarship.eligibility}</p>
+                    <p><strong>Benefits:</strong> ${scholarship.benefits}</p>
+                    <p><strong>Deadline:</strong> ${scholarship.deadline}</p>
+                    <a href="${scholarship.applyLink}" class="apply-button">Apply Now</a>
+                `;
+                list.appendChild(item);
+            });
+        }
+    </script>
+</body>
+
+</html>

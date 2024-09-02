@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+<div class="container">
+    <div class="form_area">
+        <p class="title">SIGN UP</p>
+        <form action="http://localhost/GRAD AIM/shared/signup.php" method="post" onsubmit="return validate()">
+            <div class="form_group">
+                <label class="sub_title" for="name" name="Name">Name</label>
+                <input placeholder="Enter your full name" class="form_style" type="text" name="Name" required>
+            </div>
+            <div class="form_group">
+                <label class="sub_title" for="name" name="Username">Username</label>
+                <input placeholder="Enter your full name" class="form_style" type="text" name="Username" required>
+            </div>
+            <div class="form_group">
+                <label class="sub_title" for="email" name="Email">Email</label>
+                <input placeholder="Enter your email" id="email" class="form_style" type="email" name="Email" required>
+            </div>
+            <div class="form_group">
+                <label class="sub_title" for="password" name="Password1">Password</label>
+                <input placeholder="Enter your password" id="pass1" class="form_style" type="password" name="Password1" required>
+            </div>
+            <div class="form_group">
+                <label class="sub_title" for="password">Confirm Password</label>
+                <input placeholder="Re Type Password" id="pass2" class="form_style" type="password" name="Password2" required>
+            </div>
+            <div class="form_group">
+                <label class="sub_title" name="Usertype">Select Usertype</label>
+        <select required class="sub_title" name="Usertype">
+            <option selected>Select</option>
+            <option>Student</option>
+            <option>Admin</option>
+        </select>
+            </div>
+            <div>
+                <button class="btn">SIGN UP</button>
+                <p>Have an Account? <a class="link" href="login.html">Login Here!</a></p><a class="link" href="">
+            </a></div><a class="link" href="">
+        
+    </a></form></div><a class="link" href="">
+</a></div>
+<script>
+    function validate(){
+        pass1Obj = document.getElementById("pass1");
+        pass2Obj = document.getElementById("pass2");
+        if(pass1Obj.value == pass2Obj.value){
+            return true;
+        }else{
+            alert("Pasword Mismatch");
+            return false;
+        }
+    }
+</script>
+</body>
+</html> 

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Selection Portal</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            margin: 20px;
+            color: #2c3e50;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        .college-list {
+            margin-top: 20px;
+        }
+
+        .college-item {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .college-details {
+            max-width: 70%;
+        }
+
+        .apply-button {
+            padding: 10px 15px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .apply-button:hover {
+            background-color: #c0392b;
+        }
+
+        .apply-button:disabled {
+            background-color: #7f8c8d;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>College Selection Portal</h1>
+    <div class="container">
+        <label for="stream">Select Stream:</label>
+        <select id="stream">
+            <option value="" disabled selected>Select your stream</option>
+            <option value="science">Science</option>
+            <option value="arts">Arts</option>
+            <option value="commerce">Commerce</option>
+        </select>
+
+        <label for="collegeType">Select College Type:</label>
+        <select id="collegeType" disabled>
+            <option value="" disabled selected>Select college type</option>
+            <option value="government">Government</option>
+            <option value="private">Private</option>
+        </select>
+
+        <label for="location">Select Preferred Location:</label>
+        <select id="location" disabled>
+            <option value="" disabled selected>Select location</option>
+        </select>
+
+        <div id="collegeList" class="college-list"></div>
+    </div>
+
+    <script>
+        const colleges = {
+            science: {
+                government: [
+                    { name: 'Govt. Science College', location: 'City A', admissionStatus: 'open', openDate: '01 Sept 2024', closeDate: '15 Sept 2024' },
+                    { name: 'National Science College', location: 'City B', admissionStatus: 'closed', openDate: '15 July 2024', closeDate: '30 July 2024' }
+                ],
+                private: [
+                    { name: 'Private Science Institute', location: 'City C', admissionStatus: 'open', openDate: '01 Oct 2024', closeDate: '20 Oct 2024' },
+                    { name: 'Elite Science Academy', location: 'City D', admissionStatus: 'closed', openDate: '05 Aug 2024', closeDate: '20 Aug 2024' }
+                ]
+            },
+            arts: {
+                government: [
+                    { name: 'Govt. Arts College', location: 'City E', admissionStatus: 'open', openDate: '01 Nov 2024', closeDate: '15 Nov 2024' },
+                    { name: 'National Arts College', location: 'City F', admissionStatus: 'closed', openDate: '10 July 2024', closeDate: '25 July 2024' }
+                ],
+                private: [
+                    { name: 'Private Arts Academy', location: 'City G', admissionStatus: 'open', openDate: '01 Dec 2024', closeDate: '20 Dec 2024' },
+                    { name: 'Elite Arts College', location: 'City H', admissionStatus: 'closed', openDate: '05 Sept 2024', closeDate: '20 Sept 2024' }
+                ]
+            },
+            commerce: {
+                government: [
+                    { name: 'Govt. Commerce College', location: 'City I', admissionStatus: 'open', openDate: '01 Jan 2025', closeDate: '15 Jan 2025' },
+                    { name: 'National Commerce College', location: 'City J', admissionStatus: 'closed', openDate: '10 June 2024', closeDate: '25 June 2024' }
+                ],
+                private: [
+                    { name: 'Private Commerce Institute', location: 'City K', admissionStatus: 'open', openDate: '01 Feb 2025', closeDate: '20 Feb 2025' },
+                    { name: 'Elite Commerce Academy', location: 'City L', admissionStatus: 'closed', openDate: '05 Oct 2024', closeDate: '20 Oct 2024' }
+                ]
+            }
+        };
+
+        let selectedColleges = [];
+
+        document.getElementById('stream').addEventListener('change', function () {
+            const selectedStream = this.value;
+            document.getElementById('collegeType').disabled = false;
+            document.getElementById('location').disabled = true;
+            document.getElementById('location').innerHTML = '<option value="" disabled selected>Select location</option>'; // Reset location options
+            document.getElementById('collegeList').innerHTML = ''; // Reset college list
+        });
+
+        document.getElementById('collegeType').addEventListener('change', function () {
+            const selectedStream = document.getElementById('stream').value;
+            const selectedCollegeType = this.value;
+            selectedColleges = colleges[selectedStream][selectedCollegeType];
+
+            const locations = [...new Set(selectedColleges.map(college => college.location))]; // Get unique locations
+            const locationDropdown = document.getElementById('location');
+            locationDropdown.disabled = false;
+            locationDropdown.innerHTML = '<option value="" disabled selected>Select location</option>'; // Reset location options
+
+            locations.forEach(location => {
+                const option = document.createElement('option');
+                option.value = location;
+                option.textContent = location;
+                locationDropdown.appendChild(option);
+            });
+        });
+
+        document.getElementById('location').addEventListener('change', function () {
+            const selectedLocation = this.value;
+            const filteredColleges = selectedColleges.filter(college => college.location === selectedLocation);
+            displayColleges(filteredColleges);
+        });
+
+        function displayColleges(colleges) {
+            const collegeListDiv = document.getElementById('collegeList');
+            collegeListDiv.innerHTML = '';
+
+            colleges.forEach(college => {
+                const collegeItem = document.createElement('div');
+                collegeItem.classList.add('college-item');
+
+                const collegeDetails = document.createElement('div');
+                collegeDetails.classList.add('college-details');
+
+                const collegeName = document.createElement('h3');
+                collegeName.textContent = college.name;
+                collegeDetails.appendChild(collegeName);
+
+                const collegeLocation = document.createElement('p');
+                collegeLocation.textContent = `Location: ${college.location}`;
+                collegeDetails.appendChild(collegeLocation);
+
+                const admissionStatus = document.createElement('p');
+                admissionStatus.textContent = `Admission Status: ${college.admissionStatus.charAt(0).toUpperCase() + college.admissionStatus.slice(1)}`;
+                collegeDetails.appendChild(admissionStatus);
+
+                const admissionDates = document.createElement('p');
+                admissionDates.textContent = `Admission Period: ${college.openDate} - ${college.closeDate}`;
+                collegeDetails.appendChild(admissionDates);
+
+                const applyButton = document.createElement('button');
+                applyButton.textContent = 'Apply Now';
+                applyButton.classList.add('apply-button');
+                applyButton.disabled = college.admissionStatus === 'closed';
+
+                applyButton.addEventListener('click', function () {
+                    alert(`Applying to ${college.name}`);
+                });
+
+                collegeItem.appendChild(collegeDetails);
+                collegeItem.appendChild(applyButton);
+
+                collegeListDiv.appendChild(collegeItem);
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Options in Sports and Arts</title>
+    <link rel="stylesheet" href="styless.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Study Guide</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Explore Study Options in Sports and Arts</h1>
+        <p>Choose a field below to see the respective pathways and career opportunities.</p>
+    </header>
+
+    <section class="dropdown-section">
+        <div class="dropdown">
+            <button id="dropdownButton">Select Field <i class="fas fa-chevron-down"></i></button>
+            <div id="dropdownContent" class="dropdown-content">
+                <a href="#" data-field="sports">Sports</a>
+                <a href="#" data-field="arts">Arts</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="treeSection" class="tree-section">
+        <!-- Tree structure will be dynamically inserted here -->
+    </section>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="popup-close" class="popup-close">&times;</span>
+            <h2 id="popup-title"></h2>
+            <p id="popup-desc"></p>
+            <h3>Possible Career Options:</h3>
+            <ul id="popup-careers"></ul>
+            <div class="extra-info">
+                <h3>Additional Information:</h3>
+                <p id="popup-extra"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="sports.js"></script>
+</body>
+
+</html>

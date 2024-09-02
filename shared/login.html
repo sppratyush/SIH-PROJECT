@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+<div class="container">
+    <div class="form_area">
+        <p class="title">LOGIN</p>
+        <form action="http://localhost/GRAD AIM/shared/login.php" method="post" onsubmit="return validate()">
+            <div class="form_group">
+                <label class="sub_title" for="username" name="Username ">Username</label>
+                <input placeholder="Enter your username" id="name" class="form_style" type="text" name="Username" required>
+            </div>
+            <div class="form_group">
+                <label class="sub_title" for="password" name="Password">Password</label>
+                <input placeholder="Enter your password" id="password" class="form_style" type="password" name="Password" required>
+            </div>
+            <div>
+                <button class="btn">LOGIN</button>
+                <p>Don't have an Account? <a class="link" href="signup.html">Signup Here!</a></p><a class="link" href="">
+            </a></div><a class="link" href="">
+        
+    </a></form></div><a class="link" href="">
+</a></div>
+<script>
+    function validate(){
+      const nameObj =  document.getElementById("name");
+      const passObj = document.getElementById("password");
+      if(nameObj.value = ""){
+        if(passObj.value = ""){
+            alert("Please fill in all fields");
+            return false;
+        }
+        else{
+            alert("Please fill in your username");
+            return false;
+        }
+      }else{
+        return true;
+      }
+    }
+</script>
+</body>
+</html> 

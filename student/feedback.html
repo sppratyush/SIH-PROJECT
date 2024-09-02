@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container input[type="text"],
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-container textarea {
+            resize: vertical;
+        }
+
+        .form-container .rating {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container .rating input {
+            display: none;
+        }
+
+        .form-container .rating label {
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .form-container .rating input:checked ~ label,
+        .form-container .rating label:hover,
+        .form-container .rating label:hover ~ label {
+            color: #f7b731;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        /* Popup message */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .popup button {
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background-color: #45a049;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <form class="form-container" action="http://localhost/GRAD AIM/student/feedback.php" method="post">
+        <h2>Feedback Form</h2>
+        <input type="text" id="name" placeholder="Your Name"name="Name" required>
+        <textarea id="feedback" rows="4" placeholder="Your Feedback" name="Feedback" required></textarea>
+
+        <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5" />
+            <label for="star5">&#9733;</label>
+            <input type="radio" id="star4" name="rating" value="4" />
+            <label for="star4">&#9733;</label>
+            <input type="radio" id="star3" name="rating" value="3" />
+            <label for="star3">&#9733;</label>
+            <input type="radio" id="star2" name="rating" value="2" />
+            <label for="star2">&#9733;</label>
+            <input type="radio" id="star1" name="rating" value="1" />
+            <label for="star1">&#9733;</label>
+        </div>
+
+        <button onclick="submitFeedback()">Submit</button>
+    </form>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p>Thank you for your valuable feedback!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        function submitFeedback() {
+            // Get the selected rating
+            const rating = document.querySelector('input[name="rating"]:checked');
+            if (rating) {
+                console.log("Rating: " + rating.value);
+            } else {
+                console.log("No rating selected");
+            }
+
+            // Show the popup
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closePopup() {
+            // Hide the popup
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

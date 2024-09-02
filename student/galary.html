@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hover Effect</title>
+  <link rel="stylesheet" href="galary.css">
+  <link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">\
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-8 col-12">
+        <h1 class="text-center fw-bold">Features we Provide</h1>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="main section-10">
+    <div class="all">
+      <div class="lefter" onclick="alertz('career choices option')">
+        <div class="box rounded-3 py-3">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="circle rounded-circle">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <h6 class="text-center text-limit-1 mt-2 text-color-black">Pool of 550+ career choices</h6>
+        </div>
+      </div>
+      <div class="left" onclick="alertz('Assessment option')">
+        <div class="box rounded-3 py-3">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="circle rounded-circle">
+                <i class="fa-solid fa-book-bookmark"></i>
+            </span>
+          </div>
+          <h6 class="text-center text-limit-1 mt-2 text-color-black">Personalised Psychometric Assessment</h6>
+        </div>
+      </div>
+      <div class="center">
+        <div class="box rounded-3 py-3 center-box">
+          <span>Our Service</span>
+        </div>
+      </div>
+      <div class="right" onclick="alertz('Real experts option')">
+        <div class="box rounded-3 py-3">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="circle rounded-circle">
+                <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+          <h6 class="text-center text-limit-1 mt-2 text-color-black">Chat With Real Experts</h6>
+        </div>
+      </div>
+      <div class="righter" onclick="alertz('Right colleges option')">
+        <div class="box rounded-3 py-3">
+            <div class="icon d-flex justify-content-center align-items-center">
+              <span class="circle rounded-circle">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </span>
+            </div>
+            <h6 class="text-center text-limit-1 mt-2 text-color-black">Pick The Right College</h6>
+          </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function alertz(msg){
+    alert(`We are working on this ${msg}`)
+  }
+</script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="galary.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
